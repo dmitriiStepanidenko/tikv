@@ -8,9 +8,11 @@ TiKV has many dependent repositories. If you need any help or mentoring getting 
 
 ## Building and setting up a development workspace
 
+### Official method
+
 TiKV is mostly written in Rust, but has components written in C++ (RocksDB, gRPC). We are currently using the Rust nightly toolchain. To provide consistency, we use linters and automated formatting tools.
 
-### Prerequisites
+#### Prerequisites
 
 To build TiKV you'll need to at least have the following installed:
 
@@ -26,7 +28,7 @@ If you are targeting platforms other than x86_64/aarch64 Linux or macOS, you'll 
 
 * [`llvm` and `clang`](http://releases.llvm.org/download.html) - Used to generate bindings for different platforms and build native libraries (required for grpcio, rocksdb).
 
-### Getting the repository
+#### Getting the repository
 
 ```bash
 git clone https://github.com/tikv/tikv.git
@@ -34,7 +36,7 @@ cd tikv
 # Future instructions assume you are in this directory
 ```
 
-### Configuring your Rust toolchain
+#### Configuring your Rust toolchain
 
 `rustup` is the official toolchain manager for Rust, similar to `rvm` or `rbenv` from the Ruby world.
 
@@ -45,7 +47,7 @@ rustup component add rustfmt
 rustup component add clippy
 ```
 
-### Building and testing
+#### Building and testing
 
 TiKV includes a `Makefile` that has common workflows and sets up a standard build environment. You can also use `cargo`, as you would in many other Rust projects. It can help to run a command in the same environment as the Makefile: this can avoid re-compilations due to environment changes. This is done by prefixing a command with `scripts/env`, for example: `./scripts/env cargo build`
 
@@ -97,7 +99,7 @@ See the [style doc](https://github.com/rust-lang/fmt-rfcs/blob/master/guide/guid
 
 Please follow this style to make TiKV easy to review, maintain, and develop.
 
-### Run test in docker
+#### Run test in docker
 
 Alternatively, you can run test in a docker environment. Simply running the following command, it will build the pingcap/tikv_dev image and run the tikv unittests. And you may re-use the pingcap/tikv_dev image directly for ad-hoc test.
 
@@ -111,7 +113,7 @@ Note that you may find many messages below, which in fact are not errors. They'r
 <jemalloc>: Invalid conf pair: prof:true
 ```
 
-### Build issues
+#### Build issues
 
 To reduce compilation time and disk usage, TiKV builds do not include full debugging information by default &mdash; only tests package will have line debug info enabled. To change debuginfo, just precede build commands with `RUSTFLAGS=-Cdebuginfo=1` (for line numbers), or `RUSTFLAGS=-Cdebuginfo=2` (for full debuginfo). For example,
 
@@ -123,6 +125,15 @@ RUSTFLAGS=-Cdebuginfo=1 cargo build
 When building with make, cargo will automatically use [pipelined][p] compilation to increase the parallelism of the build. To turn on pipelining while using cargo directly, set `CARGO_BUILD_PIPELINING=true`.
 
 [p]: https://internals.rust-lang.org/t/evaluating-pipelined-rustc-compilation/10199
+
+### Community-supported nix
+
+#### Development
+
+1. Install nix 
+2. Enable support for flakes
+3. In current folder run: ```bash nix develop```
+4. Run needed command in new shell
 
 ## Running TiKV
 

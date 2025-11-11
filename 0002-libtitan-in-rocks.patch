@@ -1,0 +1,38 @@
+diff --git a/librocksdb_sys/Cargo.toml b/librocksdb_sys/Cargo.toml
+index cdcd68e..7387742 100644
+--- a/librocksdb_sys/Cargo.toml
++++ b/librocksdb_sys/Cargo.toml
+@@ -9,7 +9,7 @@ license = "Apache-2.0"
+ [dependencies]
+ bzip2-sys = { version = "0.1.11+1.0.8", features = ["static"] }
+ libc = "0.2.11"
+-libtitan_sys = { path = "libtitan_sys" }
++#libtitan_sys = { path = "libtitan_sys" }
+ libz-sys = { version = "1.1", features = ["static"] }
+ openssl-sys = { version = "0.9.54", optional = true }
+ zstd-sys = { version = ">=2.0.1+zstd.1.5.2, <=2.0.13+zstd.1.5.6" }
+@@ -24,8 +24,8 @@ encryption = ["openssl-sys"]
+ jemalloc = ["tikv-jemalloc-sys"]
+ # portable doesn't require static link, though it's meaningless
+ # when not using with static-link right now in this crate.
+-portable = ["libtitan_sys/portable"]
+-sse = ["libtitan_sys/sse"]
++portable = []
++sse = []
+ static_libcpp = []
+ 
+ [build-dependencies]
+diff --git a/librocksdb_sys/build.rs b/librocksdb_sys/build.rs
+index 3d0235c..d07d3f6 100644
+--- a/librocksdb_sys/build.rs
++++ b/librocksdb_sys/build.rs
+@@ -80,7 +80,7 @@ fn main() {
+         build.flag("-fno-rtti");
+     }
+     link_cpp(&mut build);
+-    build.warnings(false).compile("libcrocksdb.a");
++    //build.warnings(false).compile("libcrocksdb.a");
+ }
+ 
+ fn link_cpp(build: &mut Build) {
+
