@@ -1,0 +1,34 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index aaeff425a..2be8665b0 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -3767,7 +3767,6 @@ dependencies = [
+  "cc",
+  "cmake",
+  "libc 0.2.151",
+- "libtitan_sys",
+  "libz-sys",
+  "lz4-sys",
+  "openssl-sys",
+@@ -3776,21 +3775,6 @@ dependencies = [
+  "zstd-sys",
+ ]
+ 
+-[[package]]
+-name = "libtitan_sys"
+-version = "0.0.1"
+-source = "git+https://github.com/tikv/rust-rocksdb.git#755d152ec4eb443039296ceecf9a072a1142e014"
+-dependencies = [
+- "bzip2-sys",
+- "cc",
+- "cmake",
+- "libc 0.2.151",
+- "libz-sys",
+- "lz4-sys",
+- "snappy-sys",
+- "zstd-sys",
+-]
+-
+ [[package]]
+ name = "libz-sys"
+ version = "1.1.22"

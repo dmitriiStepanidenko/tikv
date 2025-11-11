@@ -43,3 +43,6 @@ core.*
 
 # Ignore all logs
 *.log
+
+# Ignore nix "result" folder
+result
