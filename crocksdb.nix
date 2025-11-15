@@ -13,6 +13,7 @@
   titan,
   tikvRustRocksdbSrc,
   rocksdb,
+  jemalloc,
 }:
 stdenv.mkDerivation (finalAttrs: {
   name = "crocksdb";
@@ -32,6 +33,7 @@ stdenv.mkDerivation (finalAttrs: {
     lz4
     snappy
     zstd
+    jemalloc
   ];
 
   dontUseCmakeConfigure = true;

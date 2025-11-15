@@ -157,9 +157,11 @@
           "-L ${rocksdb-custom}/lib"
           "-L ${titan}/lib"
           "-L ${liburing}/lib"
+          "-L ${pkgs.jemalloc}/lib"
           "-l static=crocksdb"
           "-l static=rocksdb"
           "-l static=titan"
+          "-l static=jemalloc"
           "-l uring"
           "-l uring-ffi"
         ];
